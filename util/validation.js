@@ -15,10 +15,15 @@ export const validQuantity = (qty) => {
 
 export const validPrice = (price) => {
     const priceRegex = /^\d{0,5}(?!(\.|,)0{2})(\.|,)\d{1,2}$/;
-    return priceRegex.test(price)
+    return priceRegex.test(price);
 }
 
 export const validName = (name) => {
     const nameRegex = /^[a-z][a-z '-.,]{0,31}$|^$/i;
-    return nameRegex.test(name)
+    return nameRegex.test(name);
+}
+
+export const validAddress = (address) => {
+    const addressRegex = /^[a-zA-Z0-9\s,'-]*$/;
+    return addressRegex.test(address);
 }
