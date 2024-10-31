@@ -1,6 +1,8 @@
 
 import OrderModel from "../models/OrderModel.js";
 import {customer_array, item_array, order_array} from "../db/Database.js";
+import CustomerModel from "../models/CustomerModel";
+import {validAddress, validName} from "./CustomerController";
 
 
 
@@ -78,4 +80,42 @@ $('#orderTableBody').on('click', 'tr', function () {
     $('#itemNameSelect').val(itemNameSelect);
     $('#itemPrice').val(itemPrice);
     $('#quantity').val(quantity);
+});
+
+
+
+$('#order_update_btn').on('click', function () {
+
+    let index = selected_order_index;
+
+    let orderId = $('#orderId').val();
+    let cusId = $('#cusId').val();
+    let itemNameSelect = $('#itemNameSelect').val();
+    let itemPrice = $('#itemPrice').val();
+    let quantity = $('#quantity').val();
+
+        let order = new OrderModel(
+            order_array[index].id,
+            orderId,
+            cusId,
+            itemNameSelect,
+            itemPrice,
+            quantity
+        );
+        // update order
+        order_array[selected_order_index] = order;
+
+        // clean order form
+        clearOrderForm();
+
+        // reload the table
+        loadOrderTable();
+
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "order Updated Successfully",
+            showConfirmButton: false,
+            timer: 1500
+        });
 });
