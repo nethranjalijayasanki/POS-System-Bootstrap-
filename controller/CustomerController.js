@@ -21,6 +21,8 @@ export const validAddress = (address) => {
     const addressRegex = /^[a-zA-Z0-9\s,'-]*$/;
     return addressRegex.test(address);
 }
+
+
 const loadCustomerTable = () => {
     $("#customerTableBody").empty();
     customer_array.map((item, index) => {
