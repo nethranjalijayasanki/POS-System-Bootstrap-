@@ -35,8 +35,8 @@ const loadCustomerTable = () => {
 const cleanCustomerForm  = () => {
     $('#firstName').val("");
     $('#lastName').val("")
-    $('#email').val("");
     $('#mobile').val("");
+    $('#email').val("");
     $('#address').val("");
 }
 
@@ -125,15 +125,15 @@ $('#customerTableBody').on('click', 'tr', function () {
     // get customer's data
     let first_name = customer_obj.first_name;
     let last_name = customer_obj.last_name;
-    let email = customer_obj.email;
     let mobile = customer_obj.mobile;
+    let email = customer_obj.email;
     let address = customer_obj.address;
 
     // fill data into the form
     $('#firstName').val(first_name);
     $('#lastName').val(last_name);
-    $('#email').val(email);
     $('#mobile').val(mobile);
+    $('#email').val(email);
     $('#address').val(address);
 });
 
@@ -162,19 +162,19 @@ $('#customer_update_btn').on('click', function () {
             text: "Something went wrong!",
             footer: '<a href="#">check your last name</a>'
         });
-    } else if(!validateEmail(email)) {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-            footer: '<a href="#">check your email</a>'
-        });
     } else if(!validateMobile(mobile)) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
             footer: '<a href="#">check your mobile number</a>'
+        });
+    } else if(!validateEmail(email)) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">check your email</a>'
         });
     } else if(!validAddress(address)) {
         Swal.fire({

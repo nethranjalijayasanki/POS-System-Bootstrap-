@@ -1,7 +1,6 @@
 
 import ItemModel from "../models/ItemModel.js";
 import {customer_array, item_array, order_array} from "../db/Database.js";
-
 // regex
 export const validName = (name) => {
     const nameRegex = /^[a-z][a-z '-.,]{0,31}$|^$/i;
@@ -87,10 +86,11 @@ $("#item_add_btn").on("click", function() {
 
         item_array.push(item);
 
-        // clean customer form
+        // clean item form
         clearItemForm();
 
         loadItemTable();
+
         Swal.fire({
             position: "top-end",
             icon: "success",
@@ -112,14 +112,81 @@ $('#itemTableBody').on('click', 'tr', function () {
     let item_obj = item_array[index];
 
     // get item's data
-    let itemName = item_obj.first_name;
-    let qty = item_obj.last_name;
-    let itemDescription = item_obj.email;
-    let price = item_obj.address;
+    let itemName = item_obj.itemName;
+    let qty = item_obj.quantity;
+    let itemDescription = item_obj.description;
+    let price = item_obj.price;
 
     // fill data into the form
     $('#itemName').val(itemName);
     $('#qty').val(qty)
     $('#itemDescription').val(itemDescription);
     $('#price').val(price);
+});
+
+
+// update item
+$('#item_update_btn').on('click', function () {
+
+    let index = selected_item_index;
+
+    let itemName = $('#itemName').val();
+    let qty = $('#qty').val();
+    let itemDescription = $('#itemDescription').val();
+    let price = $('#price').val();
+
+    if(!validName(itemName)) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">check your item name</a>'
+        });
+    }
+    else if(!validQuantity(qty)) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">check your qty</a>'
+        });
+    }
+    else if(itemDescription.length===0) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">check your itemDescription</a>'
+        });
+    }
+    else if(!validPrice(price)) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">check your price</a>'
+        });
+    }else {
+        let item = new ItemModel(
+            item_array[index].id,
+            itemName,
+            qty,
+            itemDescription,
+            price
+        );
+        item_array[selected_item_index] = item;
+
+        // clean item form
+        clearItemForm();
+
+        // reload the table
+        loadItemTable();
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Item Updated Successfully",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
 });
