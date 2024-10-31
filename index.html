@@ -212,22 +212,52 @@
         <div class="card-body">
             <form id="orderForm">
                 <div class="mb-3">
-                    <label for="customerSelect" class="form-label">Select Customer</label>
-                    <select class="form-select" id="customerSelect" required>
-                        <option selected disabled value="">Choose a customer</option>
-                        <option value="Customer 1">Customer 1</option>
-                        <option value="Customer 2">Customer 2</option>
-                        <option value="Customer 3">Customer 3</option>
+                    <label for="orderId" class="form-label">Select Order</label>
+                    <input type="text" class="form-control" id="orderId" placeholder="Order ID" required>
+
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="cusId" class="form-label">Select Customer</label>
+                    <select class="form-select" id="cusId" required>
+                        <option selected disabled value="">Customer ID</option>
+                        <option value="Customer 1">C001</option>
+                        <option value="Customer 2">C002</option>
+                        <option value="Customer 3">C003</option>
+                        <option value="Customer 3">C004</option>
+                        <option value="Customer 3">C005</option>
+                        <option value="Customer 3">C006</option>
+                        <option value="Customer 3">C007</option>
+                        <option value="Customer 3">C008</option>
                     </select>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <label for="itemSelect" class="form-label">Select Item</label>
-                        <select class="form-select" id="itemSelect" required>
+                        <label for="itemNameSelect" class="form-label">Select Item</label>
+                        <select class="form-select" id="itemNameSelect" required>
                             <option selected disabled value="">Choose an item</option>
-                            <option value="Item 1" data-price="10">Item 1 ($10)</option>
-                            <option value="Item 2" data-price="20">Item 2 ($20)</option>
-                            <option value="Item 3" data-price="15">Item 3 ($15)</option>
+                            <option value="Item 1" data-price="10">Book</option>
+                            <option value="Item 2" data-price="20">Pencil</option>
+                            <option value="Item 3" data-price="15">colour box</option>
+                            <option value="Item 3" data-price="15">Drawing Book</option>
+                            <option value="Item 3" data-price="15">Pencil box</option>
+                            <option value="Item 3" data-price="15">Highlighter</option>
+                            <option value="Item 3" data-price="15">Bag</option>
+                            <option value="Item 3" data-price="15">pen</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="itemPrice" class="form-label">Price</label>
+                        <select class="form-select" id="itemPrice" required>
+                            <option selected disabled value="">Choose price</option>
+                            <option value="Item 1" data-price="10">200.0</option>
+                            <option value="Item 2" data-price="20">20.0</option>
+                            <option value="Item 3" data-price="15">500.0</option>
+                            <option value="Item 3" data-price="15">250.0</option>
+                            <option value="Item 3" data-price="15">800.0</option>
+                            <option value="Item 3" data-price="15">100.0</option>
+                            <option value="Item 3" data-price="15">1 500.0</option>
+                            <option value="Item 3" data-price="15">30.0</option>
                         </select>
                     </div>
                     <div class="col">
@@ -235,7 +265,7 @@
                         <input type="number" class="form-control" id="quantity" placeholder="Enter quantity" required>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary w-100" onclick="addItemToOrder()">Add Item to Order</button>
+                <button id="order_add_btn" type="button" class="btn btn-primary w-30">Add Order</button>
             </form>
         </div>
     </div>
@@ -245,10 +275,11 @@
     <table class="table table-bordered table-striped mt-3">
         <thead>
         <tr>
-            <th>Customer</th>
-            <th>Item</th>
-            <th>Quantity</th>
+            <th>Order ID</th>
+            <th>Customer ID</th>
+            <th>Item Name</th>
             <th>Price</th>
+            <th>Quantity</th>
             <th>Total</th>
         </tr>
         </thead>
@@ -378,5 +409,6 @@
 
 <script type="module" src="controller/CustomerController.js"></script>
 <script type="module" src="controller/ItemController.js"></script>
+<script type="module" src="controller/OrderController.js"></script>
 </body>
 </html>

@@ -103,6 +103,7 @@ $("#customer_add_btn").on("click", function() {
         cleanCustomerForm();
 
         loadCustomerTable();
+
         Swal.fire({
             position: "top-end",
             icon: "success",
