@@ -1,5 +1,5 @@
 export default class CustomerModel{
-    constructor(id, first_name,last_name, mobile, address) {
+    constructor(id, first_name,last_name, mobile,email, address) {
         this._id=id;
         this._first_name=first_name;
         this._last_name=last_name;
